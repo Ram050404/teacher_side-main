@@ -3,7 +3,7 @@ import { UserCircle } from 'lucide-react';
 import yujin from '../../assets/images/yujin.jpg'
 import rahma from '../../assets/images/rahma.jpg'
 
-// FriendRequest Card Component
+//  the card comp
 const FriendRequestCard = ({ id, name, grade, imageUrl, onAccept, onDeny }) => {
   return (
     <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 flex flex-col sm:flex-row items-center gap-4 transition-all duration-300">
@@ -42,9 +42,8 @@ const FriendRequestCard = ({ id, name, grade, imageUrl, onAccept, onDeny }) => {
   );
 };
 
-// Main Page Component
 const FriendRequestsPage = () => {
-  // Sample initial requests data
+
   const initialRequests = [
     { id: 1, name: 'Benali Mohammed', grade: 'L3 TI', imageUrl: yujin },
     { id: 2, name: 'Saida Bou', grade: 'L3 TI', imageUrl: rahma },

@@ -92,7 +92,7 @@ const StudentPage = () => {
 
           {/* Cards */}
           <div className="container-xl lg:container  py-8 grid grid-cols-1 md:grid-cols-1 gap-8  ">
-            <Link to="#">
+            <Link to="/student/themes">
               <Card bg="bg-sky-100" className='mb-7'>
                 <h2 className="text-2xl font-bold">Graduation Theme</h2>
                 <p className="mt-2 mb-4">
@@ -101,7 +101,7 @@ const StudentPage = () => {
               </Card>
             </Link>
 
-            <Link to="/student/partner-selection">
+            <Link to="/student/studentlists">
               <Card bg="bg-sky-100">
                 <h2 className="text-2xl font-bold">Partner Selection</h2>
                 <p className="mt-2 mb-4">
@@ -110,7 +110,7 @@ const StudentPage = () => {
               </Card>
             </Link>
 
-            <Link to="/student/applications">
+            <Link to="AppTable">
               <Card bg="bg-sky-100">
                 <h2 className="text-2xl font-bold">My Applications</h2>
                 <p className="mt-2 mb-4">
