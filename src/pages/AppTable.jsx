@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
 
-const recentapplications = [
+const recentApplications = [
   {
     id: 1,
     teacher: 'Benali Mohamed',
@@ -40,49 +40,70 @@ const recentapplications = [
   },
 ];
 
-// Helper Function to Get Order Status
-const getOrderStatus = (status) => {
+const StatusBadge = ({ status }) => {
   const statusStyles = {
-    Accepted: 'text-green-500',
-    Rejected: 'text-red-500',
-    Pending: 'text-yellow-500',
+    Accepted: 'bg-green-100 text-green-800',
+    Rejected: 'bg-red-100 text-red-800',
+    Pending: 'bg-yellow-100 text-yellow-800',
   };
-  return <span className={statusStyles[status] || 'text-gray-500'}>{status}</span>;
+
+  return (
+    <span className={`${statusStyles[status]} px-3 py-1 rounded-full text-sm font-medium`}>
+      {status}
+    </span>
+  );
 };
 
 const AppTable = () => {
   return (
-    <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-      <strong className="text-gray-700 font-medium">Recent Applications</strong>
-      <div className="border-x border-gray-200 rounded-sm mt-3">
-        <table className="w-full text-gray-700 border-collapse">
-          <thead className="bg-gray-100">
-            <tr>
-              <th className="text-left px-4 py-2">Professor</th>
-              <th className="text-left px-4 py-2">Theme</th>
-              <th className="text-left px-4 py-2">Status</th>
-              <th className="text-left px-4 py-2">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {recentapplications.map((item) => (
-              <tr key={item.id} className="hover:bg-gray-50">
-                <td className="px-4 py-2">
-                  <Link to={`/order/${item.teacher}`} className="px-4 py-2">
-                    {item.teacher}
-                  </Link>
-                </td>
-                <td className="px-4 py-2">
-                  <Link to={`/product/${item.theme}`} className="px-4 py-2">
-                    {item.theme}
-                  </Link>
-                </td>
-                <td className="px-4 py-2">{getOrderStatus(item.status)}</td>
-                <td className="px-4 py-2">{format(new Date(item.date), 'dd MMM yyyy')}</td>
+    <div className="p-6  bg-gray-100 min-h-screen">
+      <div className="w-full bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="bg-gradient-to-r from-dark-purple to-blue-950 px-6 py-4">
+          <h2 className="text-xl font-bold text-white">Application History</h2>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="bg-gray-50 border-b border-gray-200">
+                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">Professor</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">Theme</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">Status</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-600">Date</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              {recentApplications.map((item) => (
+                <tr
+                  key={item.id}
+                  className="hover:bg-gray-50 transition-colors duration-200"
+                >
+                  <td className="px-6 py-4">
+                    <Link 
+                      to={`/order/${item.teacher}`}
+                      className="text-indigo-900 hover:text-indigo-700 font-medium"
+                    >
+                      {item.teacher}
+                    </Link>
+                  </td>
+                  <td className="px-6 py-4">
+                    <Link 
+                      to={`/product/${item.theme}`}
+                      className="text-indigo-900 hover:text-indigo-700"
+                    >
+                      {item.theme}
+                    </Link>
+                  </td>
+                  <td className="px-6 py-4">
+                    <StatusBadge status={item.status} />
+                  </td>
+                  <td className="px-6 py-4 text-gray-600">
+                    {format(new Date(item.date), 'dd MMM yyyy')}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

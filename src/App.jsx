@@ -11,7 +11,7 @@ import RequestPage from './pages/student/RequestPage';
 import StudentProfile from './pages/student/StudentProfile';
 import StudentThemes from './pages/student/StudentThemes';
 import StudentlistS from './pages/student/StudentListS';
-
+import StudentsProfileS from './pages/student/StudentsProfileS';
 
 
 import TeacherLayout from './layouts/TeacherLayout';
@@ -44,6 +44,8 @@ const router = createBrowserRouter(
           <Route path="profile" element={<StudentProfile />} />
           <Route path="themes" element={<StudentThemes />} />
           <Route path="studentlists" element={<StudentlistS />} />
+
+          <Route path="studentsprofiles" element={<StudentsProfileS />} />
 
         </Route>
 
