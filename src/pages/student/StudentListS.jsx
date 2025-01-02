@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Mail, Send, Search } from 'lucide-react';
 import { studentsData } from '../../data.js';
+import StudentsProfileS from './StudentsProfileS';
 
 const StudentListS = () => {
+  const [selectedStudent, setSelectedStudent] = useState(null);
+
+  const handleViewProfile = (student) => {
+    setSelectedStudent(student);
+  };
+
   const handleSendRequest = (studentId) => {
     console.log('Sending request for student:', studentId);
   };
+
+  if (selectedStudent) {
+    return (
+      <StudentsProfileS
+        student={selectedStudent}
+        goBack={() => setSelectedStudent(null)}
+      />
+    );
+  }
 
   return (
     <div className="container mx-auto p-6">
@@ -40,10 +56,11 @@ const StudentListS = () => {
               {studentsData.map((student, index) => (
                 <tr key={index} className="hover:bg-gray-50">
                   <td className="p-4">
-                    <img 
-                      src={student.photo} 
+                    <img
+                      src={student.photo}
                       alt={student.name}
-                      className="w-10 h-10 rounded-full object-cover"
+                      onClick={() => handleViewProfile(student)}
+                      className="w-10 h-10 rounded-full object-cover cursor-pointer"
                     />
                   </td>
                   <td className="p-4">{student.name}</td>
@@ -57,11 +74,13 @@ const StudentListS = () => {
                     </div>
                   </td>
                   <td className="p-4">
-                    <span className={`px-3 py-1 rounded-full text-sm ${
-                      student.status.toLowerCase() === 'supervised' 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-yellow-100 text-yellow-800'
-                    }`}>
+                    <span
+                      className={`px-3 py-1 rounded-full text-sm ${
+                        student.status.toLowerCase() === 'supervised'
+                          ? 'bg-green-100 text-green-800'
+                          : 'bg-yellow-100 text-yellow-800'
+                      }`}
+                    >
                       {student.status}
                     </span>
                   </td>
